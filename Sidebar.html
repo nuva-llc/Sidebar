@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Sidebar</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Work+Sans&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    
+
+:root {
+  --primary-color: #131524;
+  --text: white;
+  --white: #FFFFFF;
+  --sidebar-primary: #9290FF;
+  --sidebar-primary-light: #90DEFF;
+  --sidebar-primary-hover: #605DFF10;
+  --sidebar-background: #19182D;
+  --background: #F1F3FF;
+  --full-bg: #C7D2DC;
+  --text-link: #E6E8F0;
+  --exp-btn-background: #1C2035;
+  --exp-btn-border: #303651;
+  --exp-btn: #F4F6F9;
+  --headline: #9FAEE1;
+  --cta-background: #1C2035;
+  --cta-background-darker: #CFD5FF;
+  --cta-background-border: #303651;
+  --cta-text: #605DFF1A;
+  --neutral: #0C0E19;
+  --search-bg: #1C2035;
+  --logout: #FA7575;
+  --text: #FFFFFF;
+  --text-lighter: #E6e8f0;
+  --headline-text: #F4F6F9;
+}
+
+body {
+  font-family: 'Work Sans', 
+    sans-serif;
+  background: var(--full-bg);
+  font-size: 16px;
+  padding: 1rem;
+  height: 100%;
+}
+
+html {
+  height: 100%;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.sidebar {
+  position: sticky;
+  top: 0;
+  min-height: 53.75rem;
+  height: 100%;
+  padding: 1rem 0;
+  border-radius: 1rem;
+  max-width: 18rem;
+  display: flex;
+  color: var(--white);
+  flex-direction: column;
+  background: var(
+    --sidebar-background);
+  transition: max-width 
+    0.1s ease-in-out;
+}
+
+.sidebar-title {
+  color: #E0EAFF;
+  font-weight: bold;
+}
+
+body.collapsed .sidebar {
+  max-width: 80px;
+  display: flex;
+  align-items: center;
+}
+
+body.collapsed .hide {
+  position: absolute;
+  display: none;
+}
+
+/*? search wrapper */
+.search__wrapper {
+  padding: 0 1rem;
+  position: relative;
+}
+
+.search__wrapper input {
+  background: var(
+    --search-bg
+  );
+  height: 2.5rem;
+  width: 100%;
+  border-radius: 0.5rem;
+  padding: 0 0.5rem;
+  padding-left: 2rem;
+  flex-grow: 1;
+  outline: none;
+  border: none;
+}
+
+.search__wrapper svg {
+  position: absolute;
+  z-index: 2;
+  top: 50%;
+  left: 1.625rem;
+  transform: 
+    translateY(-50%);
+  pointer-events: none;
+  right: 1.5rem;
+}
+
+body.collapsed 
+.search__wrapper svg {
+  top: 50%;
+  left: 50%;
+  right: auto;
+  transform: 
+    translate(-50%, -50%);
+  color: var(--text-link);
+  stroke: var(--text-link);
+}
+
+.search__wrapper 
+input::-webkit-input-placeholder {
+  color: var(--text-link);
+  white-space: nowrap;
+}
+
+body.collapsed 
+.search__wrapper input {
+  max-width: 2.5rem;
+}
+
+body.collapsed .search__wrapper 
+input::-webkit-input-placeholder {
+  color: transparent;
+}
+
+/*? sidebar top */
+.sidebar-top-wrapper {
+  display: flex;
+}
+
+.sidebar-top {
+  position: relative;
+  display: flex;
+  align-items: start;
+  justify-content: center;
+  flex-direction: column;
+  overflow: hidden;
+  height: 4rem;
+  padding-bottom: 1rem;
+}
+
+body.collapsed .sidebar-top {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.logo__wrapper {
+  display: flex;
+  align-items: center;
+  color: var(--text-link);
+  font-weight: 700;
+  text-decoration: none;
+  font-size: 1.125rem;
+  gap: 1rem;
+  padding: 0 1rem;
+}
+
+.logo-small {
+  height: 2rem;
+  width: 2rem;
+  overflow: hidden;
+  object-fit: cover;
+}
+
+/*? menu links */
+.sidebar-links {
+  margin-top: 1rem;
+  width: 100%;
+}
+
+.sidebar-links h2 {
+  margin-left: 1rem;
+  color: var(--headline);
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.125rem;
+  margin-bottom: 0.5rem;
+  animation: fadeIn 0.2s 
+    ease-in-out;
+}
+
+body.collapsed h2 {
+  display: none;
+}
+
+.sidebar-links ul {
+  list-style-type: none;
+  position: relative;
+  display: flex;
+  column-gap: 0.5rem;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+}
+
+.sidebar-links li {
+  color: var(--text-link);
+}
+
+body.collapsed 
+.sidebar-links li {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.sidebar-links li svg {
+  stroke: var(--text-link);
+  width: 1.75rem;
+  height: 1.75rem;
+  min-width: 1.75rem;
+}
+
+.sidebar-links li 
+a:hover svg {
+  color: var(
+    --sidebar-primary
+  );
+}
+
+.sidebar-links li 
+a:hover {
+  color: var(
+    --sidebar-primary);
+}
+
+.sidebar-links li a {
+  color: var(--text-link);
+  flex-grow: 1;
+  padding: 0 1rem;
+  font-size: 1.25rem;
+  display: flex;
+  gap: 1.75rem;
+  justify-content: center;
+  align-items: center;
+  height: 3.5rem;
+  text-decoration: none;
+  transition: background-color 
+    0.2s ease-in-out;
+}
+
+.sidebar-links li a .link {
+  flex-grow: 1;
+  overflow: hidden;
+  white-space: nowrap;
+  animation: fadeIn 
+    0.2s ease-in-out;
+}
+
+.sidebar-links li a img {
+  height: 2.125rem;
+  width: 2.125rem;
+}
+
+.sidebar-links .active:hover {
+  background: var(
+    --sidebar-primary-hover);
+}
+
+.sidebar-links .active {
+  text-decoration: none;
+  background: var(
+    --sidebar-primary-hover);
+  color: var(--text-link);
+}
+
+.sidebar-links .active svg {
+  stroke: var(--text-link);
+}
+
+.sidebar-links li a:hover svg {
+  stroke: var(
+    --sidebar-primary-light
+  );
+  color: var(
+    --sidebar-primary-light
+  );
+}
+
+.sidebar-links li a:hover {
+  color: var(
+    --sidebar-primary-light
+  );
+}
+
+/* ?tooltip */
+.tooltip {
+  position: relative;
+}
+
+.tooltip 
+.tooltip__content::after {
+  content: " ";
+  position: absolute;
+  top: 50%;
+  left: 0%;
+  margin-left: -0.525rem;
+  margin-top: -0.3125rem;
+  border-width: 0.3125rem;
+  border-style: solid;
+  border-color: transparent 
+    var(--sidebar-background) 
+    transparent transparent;
+}
+
+.tooltip .tooltip__content {
+  visibility: hidden;
+  background: var(--primary-color);
+  color: var(--white);
+  text-align: center;
+  border-radius: 0.375rem;
+  padding: 0.375rem 0.75rem;
+  position: absolute;
+  z-index: 1;
+  left: 5.625rem;
+}
+
+.collapsed .tooltip:hover 
+.tooltip__content {
+  visibility: visible;
+}
+
+/* ?sidebar action */
+
+.sidebar__action__wrapper {
+  overflow-x: hidden;
+  margin: 0 1rem;
+  margin-top: auto;
+}
+
+.sidebar__action {
+  padding: 1rem;
+  background: var(
+    --cta-background);
+  border-radius: 1rem;
+  min-width: 1rem;
+  color: var(--cta-text);
+  animation: fadeIn 0.2s 
+    ease-in-out;
+}
+
+.sidebar__action p {
+  margin-bottom: 0.75rem;
+  margin-top: 0.5rem;
+  color: var(--text)
+}
+
+.sidebar__action h2 {
+  color: var(--headline-text);
+  margin-bottom: 0.5rem;
+}
+
+.sidebar__action button {
+  border: 0;
+  margin-top: 0.5rem;
+  width: 100%;
+  cursor: pointer;
+  font-weight: 600;
+  height: 2.612rem;
+  font-size: 1.125rem;
+  color: var(--neutral);
+  border-radius: 0.75rem;
+  background: linear-gradient(90deg,
+      var(--sidebar-primary) -0.38%,
+      var(--sidebar-primary-light) 
+      100.02%);
+}
+
+.sidebar__action 
+.progress-bar {
+  width: 5rem;
+  height: 5rem;
+  border-radius: 50%;
+  font-size: larger;
+  display: flex;
+  font-weight: 600;
+  align-items: center;
+  justify-content: center;
+  background:
+    radial-gradient(closest-side,
+      var(--cta-background) 79%,
+      transparent 80% 100%),
+    conic-gradient(
+      var(--sidebar-primary) 60%,
+      var(--cta-background-darker) 0);
+  margin-bottom: 1rem;
+}
+
+.progress-bar__value {
+  font-size: 1.25rem;
+  color: var(--text);
+}
+
+body.collapsed .sidebar__action {
+  display: none;
+}
+
+
+/*? profile part */
+.sidebar__profile {
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-direction: row;
+  padding: 0 1rem;
+  color: var(--text-link);
+  overflow-x: hidden;
+  min-height: 2.6125rem;
+}
+
+.avatar__wrapper {
+  position: relative;
+  display: flex;
+}
+
+.avatar {
+  display: block;
+  width: 2.5rem;
+  height: 2.5rem;
+  object-fit: cover;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.avatar__name {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  white-space: nowrap;
+  animation: fadeIn 0.2s 
+    ease-in-out;
+}
+
+.user-name {
+  font-weight: 600;
+  text-align: left;
+  color: var(--text);
+  animation: fadeIn 0.2s 
+    ease-in-out;
+}
+
+.email {
+  color: var(--text-lighter);
+  font-size: 0.8125rem;
+  animation: fadeIn 0.2s 
+    ease-in-out;
+}
+
+.logout {
+  animation: fadeIn 0.2s 
+    ease-in-out;
+  margin-left: auto;
+}
+
+.logout svg {
+  color: var(--logout);
+}
+
+body.collapsed .logout {
+  display: none;
+}
+
+/*? Expand button */
+.expand-btn {
+  position: absolute;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  right: -1rem;
+  border: 1px solid var(
+    --cta-background-border);
+  background: var(
+    --exp-btn-background);
+  z-index: 2;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 0.5rem;
+}
+
+.expand-btn svg {
+  transform: rotate(-180deg);
+  stroke: var(--exp-btn);
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+body.collapsed 
+.expand-btn svg {
+  transform: rotate(-360deg);
+}
+
+.bottom-links {
+  margin-top: auto;
+}
+
+@keyframes fadeIn {
+  from {
+    width: 0;
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+    width: 100%;
+  }
+}
+  </style>
+</head>
+
+<body>
+  <nav class="sidebar" aria-label="Main Sidebar">
+    <div class="sidebar-top-wrapper">
+      <div class="sidebar-top">
+        <a href="#" class="logo__wrapper">
+          <img src="assets/storeify.png" alt="Logo" class="logo-small">
+          <span class="sidebar-title hide">
+            Storeify
+          </span>
+        </a>
+      </div>
+      <div class="expand-btn" aria-label="Toggle sidebar">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M6.00979 2.72L10.3565 7.06667C10.8698 7.58 10.8698 8.42 10.3565 8.93333L6.00979 13.28"
+            stroke="#F4F6F9" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </div>
+    </div>
+    <div class="search__wrapper">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="M9 9L13 13M5.66667 10.3333C3.08934 10.3333 1 8.244 1 5.66667C1 3.08934 3.08934 1 5.66667 1C8.244 1 10.3333 3.08934 10.3333 5.66667C10.3333 8.244 8.244 10.3333 5.66667 10.3333Z"
+          stroke="#989EB3" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+      </svg>
+      <input id="search-input" aria-label="Search" type="search" placeholder="Search for anything...">
+    </div>
+    <div class="sidebar-links">
+      <h2>Main</h2>
+      <ul>
+        <li>
+          <a href="#home" title="Home" class="tooltip">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24"
+              viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
+              stroke-linejoin="round">
+              <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+              <path d="M5 12l-2 0l9 -9l9 9l-2 0"></path>
+              <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7"></path>
+              <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6"></path>
+            </svg>
+            <span class="link hide">Home</span>
+            <span class="tooltip__content">Home</span>
+          </a>
+        </li>
+        <li>
+          <a href="#orders" title="Orders" class="tooltip">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-box" width="24" height="24"
+              viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
+              stroke-linejoin="round">
+              <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+              <path d="M12 3l8 4.5l0 9l-8 4.5l-8 -4.5l0 -9l8 -4.5"></path>
+              <path d="M12 12l8 -4.5"></path>
+              <path d="M12 12l0 9"></path>
+              <path d="M12 12l-8 -4.5"></path>
+            </svg>
+            <span class="link hide">Orders</span>
+            <span class="tooltip__content">Orders</span>
+          </a>
+        </li>
+        <li>
+          <a href="#documentation" title="Documentation" class="tooltip">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
+              stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+              <path d="M5 4h4l3 3h7a2 2 0 0 1 2 2v8a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-11a2 2 0 0 1 2 -2"></path>
+            </svg>
+            <span class="link hide">Documentation</span>
+            <span class="tooltip__content">Documentation</span>
+          </a>
+        </li>
+        <li>
+          <a href="#map-overview" title="Map Overview" class="tooltip">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-map-check" width="24"
+              height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
+              stroke-linejoin="round">
+              <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+              <path d="M11 18l-2 -1l-6 3v-13l6 -3l6 3l6 -3v9"></path>
+              <path d="M9 4v13"></path>
+              <path d="M15 7v8"></path>
+              <path d="M15 19l2 2l4 -4"></path>
+            </svg>
+            <span class="link hide">Map Overview</span>
+            <span class="tooltip__content">Map Overview</span>
+          </a>
+        </li>
+        <li>
+          <a href="#statistics" title="Statistics" class="tooltip">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chart-pie" width="24"
+              height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
+              stroke-linejoin="round">
+              <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+              <path d="M10 3.2a9 9 0 1 0 10.8 10.8a1 1 0 0 0 -1 -1h-6.8a2 2 0 0 1 -2 -2v-7a.9 .9 0 0 0 -1 -.8"></path>
+              <path d="M15 3.5a9 9 0 0 1 5.5 5.5h-4.5a1 1 0 0 1 -1 -1v-4.5"></path>
+            </svg>
+            <span class="link hide">Statistics</span>
+            <span class="tooltip__content">Statistics</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="sidebar-links">
+      <h2>Communication</h2>
+      <ul>
+        <li>
+          <a href="#communication" title="Communication" class="tooltip">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
+              stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+              <path d="M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z"></path>
+              <path d="M4 13h3l3 3h4l3 -3h3"></path>
+            </svg>
+            <span class="link hide">Communication</span>
+            <span class="tooltip__content">Communication</span>
+          </a>
+        </li>
+        <li>
+          <a href="#couriers" title="Couriers" class="tooltip">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-users" width="24" height="24"
+              viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
+              stroke-linejoin="round">
+              <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+              <path d="M9 7m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"></path>
+              <path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+              <path d="M21 21v-2a4 4 0 0 0 -3 -3.85"></path>
+            </svg>
+            <span class="link hide">Couriers</span>
+            <span class="tooltip__content">Couriers</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="sidebar__action__wrapper">
+      <div class="sidebar__action">
+        <div class="progress-bar">
+          <div class="progress-bar__value">
+            60%
+          </div>
+        </div>
+        <h2>Used Capacity</h2>
+        <p>
+          You are already using 60% of your capacity.
+        </p>
+        <button>
+          Upgrade plan
+        </button>
+      </div>
+    </div>
+    <div class="sidebar-links bottom-links">
+      <ul role="menu">
+        <li role="menuitem">
+          <a href="#settings" title="Settings" class="tooltip" aria-describedby="tooltip-settings">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
+              stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+              <path
+                d="M10.325 4.317c.426 -1.756 2.924 -1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543 -.94 3.31 .826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756 .426 1.756 2.924 0 3.35a1.724 1.724 0 0 0 -1.066 2.573c.94 1.543 -.826 3.31 -2.37 2.37a1.724 1.724 0 0 0 -2.572 1.065c-.426 1.756 -2.924 1.756 -3.35 0a1.724 1.724 0 0 0 -2.573 -1.066c-1.543 .94 -3.31 -.826 -2.37 -2.37a1.724 1.724 0 0 0 -1.065 -2.572c-1.756 -.426 -1.756 -2.924 0 -3.35a1.724 1.724 0 0 0 1.066 -2.573c-.94 -1.543 .826 -3.31 2.37 -2.37c1 .608 2.296 .07 2.572 -1.065z">
+              </path>
+              <path d="M9 12a3 3 0 1 0 6 0a3 3 0 0 0 -6 0"></path>
+            </svg>
+            <span class="link hide">Settings</span>
+            <span class="tooltip__content" role="tooltip" id="tooltip-settings">Settings</span>
+          </a>
+        </li>
+        <li>
+          <a href="#help" title="Help" class="tooltip">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
+              stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+              <path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0"></path>
+              <path d="M12 16v.01"></path>
+              <path d="M12 13a2 2 0 0 0 .914 -3.782a1.98 1.98 0 0 0 -2.414 .483"></path>
+            </svg>
+            <span class="link hide">Help</span>
+            <span class="tooltip__content">Help</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="divider"></div>
+    <div class="sidebar__profile">
+      <div class="avatar__wrapper">
+        <img class="avatar" src="assets/profile.png" alt="Profile picture of Joe Doe Picture">
+        <div class="online__status"></div>
+      </div>
+      <div class="avatar__name hide">
+        <div class="user-name">Joe Doe</div>
+        <div class="email">joe.doe@atheros.ai</div>
+      </div>
+      <a href="#logout" class="logout">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-logout" width="24" height="24"
+          viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
+          stroke-linejoin="round">
+          <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+          <path d="M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2"></path>
+          <path d="M9 12h12l-3 -3"></path>
+          <path d="M18 15l3 -3"></path>
+        </svg>
+      </a>
+    </div>
+  </nav>
+  <script src="script.js"></script>
+  <script>
+    const expand_btn = document.querySelector(".expand-btn");
+
+let activeIndex;
+
+expand_btn.addEventListener("click", () => {
+  document.body.classList.toggle("collapsed");
+});
+
+const current = window.location.href;
+
+const allLinks = document.querySelectorAll(".sidebar-links a");
+
+allLinks.forEach((elem) => {
+  elem.addEventListener("click", function () {
+    const hrefLinkClick = elem.href;
+
+    allLinks.forEach((link) => {
+      if (link.href == hrefLinkClick) {
+        link.classList.add("active");
+      } else {
+        link.classList.remove("active");
+      }
+    });
+  });
+});
+
+const searchInput = document.querySelector(".search__wrapper input");
+
+searchInput.addEventListener("focus", (e) => {
+  document.body.classList.remove("collapsed");
+});
+  </script>
+</body>
+
+</html>
